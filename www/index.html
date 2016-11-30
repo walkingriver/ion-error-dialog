@@ -32,7 +32,8 @@
 
   <!-- your app's js -->
   <script src="js/app.js"></script>
-  <script src="js/error-dialog.js"></script>
+  <script src="js/error-dialog.service.js"></script>
+  <script src="js/error-dialog.component.js"></script>
 </head>
 
 <body ng-app="starter">
@@ -46,6 +47,10 @@
         Show Error Dialog
       </button>
       <error-dialog error-message="vm.errorMessage" on-closed="vm.onClosed()"></error-dialog>
+
+      <button class="button button-block button-calm" ng-click="vm.showError()">
+        Show Error from Service
+      </button>
     </ion-content>
   </ion-pane>
 </body>
