@@ -3,7 +3,6 @@
         .component('errorDialog', {
             bindings: {
                 errorMessage: '<',
-                isVisible: '<',
                 onClosed: '&'
             },
             controller: ErrorDialogController
@@ -29,21 +28,19 @@
 
     function ErrorDialogController($ionicModal, $rootScope) {
         var vm = this;
+        var scope = $rootScope.$new();
         vm.$onChanges = onChanges;
         vm.$onInit = onInit;
-        vm.isVisible = false;
 
         function openModal() {
             vm.modal.show();
         };
 
         function closeModal() {
-            vm.isVisible = false;
             vm.modal.hide();
         };
 
         function onInit() {
-            var scope = $rootScope.$new();
             scope.closeModal = closeModal;
             scope.errorMessage = vm.errorMessage;
 
@@ -70,14 +67,13 @@
         }
 
         function onChanges(changes) {
-            if (changes.isVisible) {
-                vm.isVisible = changes.isVisible.currentValue;
+            if (changes.errorMessage) {
+                scope.errorMessage = changes.errorMessage.currentValue;
             }
 
-            if (vm.isVisible) {
+            if (scope.errorMessage) {
                 openModal();
             }
         }
-
     }
 })();

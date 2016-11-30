@@ -23,12 +23,11 @@ angular.module('starter', ['ionic', 'errorDialog'])
   })
   .controller('AppController', function () {
     var vm = this;
-    vm.hasError = false;
-    vm.errorMessage = "Mike was here";
+    vm.errorMessage = '';
     vm.showErrorDialog = function () {
-      vm.hasError = true;
+      vm.errorMessage = 'Mike was here - again';
     };
     vm.onClosed = function () {
-      vm.hasError = false;
+      vm.errorMessage = '';
     }
   });
